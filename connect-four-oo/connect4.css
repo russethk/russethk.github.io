@@ -1,0 +1,140 @@
+body {
+  background-color: whitesmoke;
+}
+
+#overlay {
+  position:absolute;
+  margin: 0 auto;
+  padding: 10px;
+  margin-top: -10px;
+  margin-left: -50px;
+  width: 42%;
+  border: solid 2px grey;
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+  font-size: 1rem;
+  font-family: "Righteous", sans-serif;
+  background-color: black;
+  z-index: 50; 
+  cursor: pointer; 
+}
+
+
+#inputContainer {
+  width: 38%;
+  z-index: 1;
+  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 5px;
+}
+
+input {
+  width: 35%;
+  height: 30px;
+  border-radius: 6px;
+  border: solid 2px black;
+  margin-left: 5px;
+  display: inline-block;
+}
+
+button {
+  display: inline;
+  height: 40px;
+  vertical-align: top;
+  background-color:#0a0a23;
+  color: #fff;
+  border: 2px solid white;
+  margin-left: 5px;
+  border-radius:6px;
+}
+
+button:hover {
+  background-color: gray;
+}
+
+#gameContainer {
+  width: 36%;
+  z-index: 1;
+  margin: 0 auto;
+  border: 2px solid black;
+  background-color: blue;
+  padding: 5px;
+  }
+
+.game {
+  height: 100%;
+  align-content: center;
+  border: solid 6px black;
+  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin: 10px;
+  z-index: 2;
+}
+
+
+/* game board table */
+
+#board td {
+  display: relative;
+  width: 45px;
+  height: 45px;
+  border: solid 4px black;
+  background-color: white;
+  border-radius: 50%;
+  z-index: 5;
+  padding: 5px;
+}
+
+/* pieces are div within game table cells: draw as colored circles */
+
+.piece {
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  animation: drop .5s linear;
+}
+
+@keyframes drop {
+  0% { transform: translateY(-400px); }
+  100% { transform: translateY(0px); }
+}
+
+
+/* column-top is table row of clickable areas for each column */
+
+#column-top td {
+  border: dashed 2px black;
+}
+
+#column-top td:hover {
+  background-color: gold;
+  transition: color 0.3s ease-in, background-color 0.3s ease-in;
+}
+
+h1 {
+  margin: 0 auto;
+  text-align: center;
+  padding: 0;
+  font-size: 6rem;
+  font-family: "Righteous", sans-serif;
+  font-weight: bold;
+  color: white;
+  text-shadow: 2px 2px 2px black;;
+  background-color: purple;
+  width: 45%;
+  border-radius: 18px;
+  z-index: 5;
+}
+
+img {
+  box-shadow: 4px 4px 1px #ccc;
+  -moz-box-shadow: 4px 4px 1px #ccc;
+  -webkit-box-shadow: 4px 4px 1px #ccc;
+  -khtml-box-shadow: 4px 4px 1px #ccc;
+}
+
+
