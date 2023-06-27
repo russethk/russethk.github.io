@@ -1,12 +1,13 @@
 "use strict";
 
 const MISSING_IMAGE_URL = "https://tinyurl.com/tv-missing";
-const TVMAZE_API_URL = "https://api.tvmaze.com/";
+const TVMAZE_API_URL = "https://api.tvmaze.com";
 
 const $showsList = $("#showsList");
 const $episodesList = $("#episodesList");
 const $episodesArea = $("#episodesArea");
 const $searchForm = $("#searchForm");
+
 
 
 /** Given a search term, search for tv shows that match that query.
@@ -34,6 +35,7 @@ async function getShowsByTerm(term) {
     return {
       id: show.id,
       name: show.name,
+      premiered: show.premiered,
       summary: show.summary,
       image: show.image ? show.image.medium : MISSING_IMAGE_URL
     };
@@ -52,11 +54,10 @@ function populateShows(shows) {
          <div class="media">
            <img src="${show.image}" alt="${show.name}" class="w-25 me-3">
            <div class="media-body">
-             <h5 class="text-primary">${show.name}</h5>
+             <h4 class="text-primary">${show.name}</h4>
+             <h6 class="text-primary">Premiered: ${show.premiered}</h6>
              <div><small>${show.summary}</small></div>
-             <button class="btn btn-outline-light btn-sm Show-getEpisodes">
-              Episodes
-             </button>
+              <button class="btn btn-primary btn-sm Show-getEpisodes">Episodes</button>
            </div>
          </div>
        </div>
@@ -109,20 +110,23 @@ function populateEpisodes(episodes) {
   $episodesList.empty();
 
   for (let episode of episodes) {
-    const $item = $(
-      `<li>
-          ${episode.name}
-          (season ${episode.season}, episode ${episode.number})
-        </li>
-      `);
-    $episodesList.append($item);
+    const $episodesTable = $(
+      ` <tr class="d-flex">
+          <td class="col-4">${episode.name}</td>
+          <td class="col-1">${episode.season}</td>
+          <td class="col-1">${episode.number}</td>
+        </tr>
+      `
+    );
+    $episodesList.append($episodesTable);
   }
   $episodesArea.show();
 }
 
+
 /** Handle click of episodes list: show details */
 async function getEpisodesAndDisplay(evt) {
-  const showId = $(evt.target).closest(".Show").data("show-id");
+  const showId = $(evt.target).closest("[data-show-id]").data("show-id");
   const episodes = await getEpisodesOfShow(showId);
   populateEpisodes(episodes);
 }
